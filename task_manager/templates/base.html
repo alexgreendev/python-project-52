@@ -1,0 +1,30 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}{% translate 'Task manager' %}{% endblock %}
+        </title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <header class="flex-shrink-0">
+    {% include 'navbar.html' %}
+  </header>
+
+    <div class="container wrapper flex-grow-1">
+        <div class="alert-{{ message.tags }}" role="alert">
+            {% bootstrap_messages %}
+        </div>
+            {% block content %}
+            {% endblock %}
+    </div>
+</body>
+</html>

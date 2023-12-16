@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <h2 class="my-4">{% translate 'Statuses' %}</h2>
+    <a class="btn btn-primary btn-sm" href="{% url 'status_create' %}" role="button">{% translate 'Create status' %}</a>
+    <br>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:10%">ID</th>
+                <th style="width:50%">{% translate 'Name' %}</th>
+                <th style="width:25%">{% translate 'Date of creation' %}</th>
+                <th style="width:15%"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if statuses %}
+                {% for status in statuses %}
+                    <tr>
+                        <td>{{ status.id }}</td>
+                        <td>{{ status.name }}</td>
+                        <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'status_update' status.pk %}" role="button">{% translate 'Update' %}</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'status_delete' status.pk %}" role="button">{% translate 'Delete' %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

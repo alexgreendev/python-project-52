@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="card text-center" style="margin: 120px">
+        <div class="card-header text-white bg-secondary">
+            <h1 class="display-5">{% translate 'Welcome to the Task manager' %}</h1>
+        </div>
+        <div class="card-body p-5 bg-light">
+            <p class="lead"><strong>{% translate 'Is an application, which allows you to set tasks, assign performers and change their statuses' %}</strong></p>
+        </div>
+    </div>
+{% endblock %}

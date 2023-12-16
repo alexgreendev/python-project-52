@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+<h2 class="my-4">{% translate 'Viewing task' %}</h2>
+
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h3>{{ task.name }}</h3>
+        </div>
+        <div class="card-body bg-light">
+            <p>{{ task.description }}</p>
+            <hr>
+            <div class="container">
+                <div class="row p-1">
+                    <div class="col">{% translate 'Author' %}</div>
+                    <div class="col">{{ task.author }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% translate 'Executor' %}</div>
+                    <div class="col">{{ task.executor }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% translate 'Status' %}</div>
+                    <div class="col">{{ task.status }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% translate 'Creation date' %}</div>
+                    <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">
+                        <h6>{% translate 'Labels' %}:</h6>
+                        <ul>
+                            {% for label in task.labels.all %}
+                            <li>{{ label.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">
+                        <a class="btn btn-primary btn-sm" href="{% url 'task_update' task.id %}" role="button">{% translate 'Update' %}</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.id %}" role="button">{% translate 'Delete' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

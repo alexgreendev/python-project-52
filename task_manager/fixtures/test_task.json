@@ -1,0 +1,14 @@
+{
+  "create": {
+    "name": "New_task",
+    "description": "It is time",
+    "executor": 2,
+    "status": 1
+  },
+  "update": {
+    "name": "Update_task",
+    "description": "It is time",
+    "executor": 2,
+    "status": 2
+  }
+}

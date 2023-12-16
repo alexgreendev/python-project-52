@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <h2 class="my-4">{% translate 'Update status' %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-primary btn-sm" type="submit" value="{% translate 'Update' %}">
+    </form>
+{% endblock %}

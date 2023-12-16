@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <h2 class="my-4">{% translate 'Tasks' %}</h2>
+    <a class="btn btn-primary btn-sm" href="{% url 'task_create' %}" role="button">{% translate 'Create task' %}</a>
+    <br>
+    <br>
+        <div class="card mb-3">
+            <div class="card-body bg-light">
+                <form class="form-inline center" method="get">
+                  {% bootstrap_form filter.form field_class="ml-2 mr-3" %}
+                    <button class="btn btn-primary btn-sm" type="submit">{% translate 'Show' %}</button>
+                </form>
+            </div>
+        </div>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:10%">ID</th>
+                <th style="width:15%">{% translate 'Name' %}</th>
+                <th style="width:15%">{% translate 'Status' %}</th>
+                <th style="width:15%">{% translate 'Author' %}</th>
+                <th style="width:15%">{% translate 'Executor' %}</th>
+                <th style="width:15%">{% translate 'Date of creation' %}</th>
+                <th style="width:15%"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if tasks %}
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.id }}</td>
+                        <td><a href="{% url 'show_one_task' task.id %}">{{ task.name }}</a></td>
+                        <td>{{ task.status }}</td>
+                        <td>{{ task.author }}</td>
+                        <td>{{ task.executor }}</td>
+                        <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'task_update' task.id %}" role="button">{% translate 'Update' %}</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.id %}" role="button">{% translate 'Delete' %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

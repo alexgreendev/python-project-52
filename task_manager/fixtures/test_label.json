@@ -1,0 +1,8 @@
+{
+  "create": {
+    "name": "label1"
+  },
+  "update": {
+    "name": "label2"
+  }
+}
